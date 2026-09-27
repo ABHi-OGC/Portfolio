@@ -1,0 +1,5 @@
+[project]
+name = "portfolio-frontend"
+framework = "react-vite"
+build_command = "npm run build"
+output_directory = "dist"
