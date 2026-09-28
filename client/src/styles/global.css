@@ -1,11 +1,9 @@
 /* ============================================================
    TOKENS — DARK THEME (default)
-   Warm near-black neutrals with a subtle sage undertone.
    ============================================================ */
 :root {
 	color-scheme: dark;
 
-	/* Neutrals */
 	--bg: #0b0c0a;
 	--surface: #131511;
 	--surface-2: #1a1c17;
@@ -14,7 +12,6 @@
 	--text: #f6f6f1;
 	--muted: #9ea190;
 
-	/* Accent (brand lime) */
 	--accent: #c9f24d;
 	--accent-dim: #8fa838;
 	--accent-text: #d4f267;
@@ -22,7 +19,6 @@
 	--accent-tint: rgba(201, 242, 77, 0.1);
 	--on-accent: #0b0c0a;
 
-	/* Theme surfaces */
 	--header-bg: rgba(11, 12, 10, 0.72);
 	--grain-opacity: 0.032;
 	--hero-glow: rgba(201, 242, 77, 0.09);
@@ -33,7 +29,6 @@
 	--tag-bg: rgba(255, 255, 255, 0.035);
 	--hover-row: rgba(201, 242, 77, 0.045);
 
-	/* Feedback */
 	--glow-shadow: rgba(201, 242, 77, 0.7);
 	--glow-fade: rgba(201, 242, 77, 0);
 	--success-bg: rgba(201, 242, 77, 0.08);
@@ -44,7 +39,6 @@
 	--error-text: #ff9f9f;
 	--danger: #ff6b6b;
 
-	/* Layout */
 	--radius: 16px;
 	--radius-sm: 10px;
 	--font:
@@ -56,21 +50,20 @@
 	--section-y: clamp(3.5rem, 10vh, 9rem);
 	--header-h: 64px;
 
-	/* Elevation */
 	--shadow-card:
 		0 1px 0 rgba(255, 255, 255, 0.02), 0 8px 24px -16px rgba(0, 0, 0, 0.6);
 	--shadow-card-hover:
 		0 1px 0 rgba(255, 255, 255, 0.03), 0 16px 40px -20px rgba(0, 0, 0, 0.8);
+
+	scrollbar-color: var(--line) var(--bg);
 }
 
 /* ============================================================
    TOKENS — LIGHT THEME
-   Warm cream neutrals. Same lime brand, tuned for readability.
    ============================================================ */
 :root[data-theme="light"] {
-	color-scheme: light;
+	color-scheme: light only;
 
-	/* Neutrals */
 	--bg: #faf9f4;
 	--surface: #ffffff;
 	--surface-2: #f3f2ea;
@@ -79,7 +72,6 @@
 	--text: #181815;
 	--muted: #6b6d5e;
 
-	/* Accent */
 	--accent: #c9f24d;
 	--accent-dim: #98ae2e;
 	--accent-text: #586812;
@@ -87,8 +79,7 @@
 	--accent-tint: rgba(140, 180, 20, 0.12);
 	--on-accent: #0d0e0a;
 
-	/* Theme surfaces */
-	--header-bg: rgba(250, 249, 244, 0.8);
+	--header-bg: rgba(250, 249, 244, 0.94);
 	--grain-opacity: 0.018;
 	--hero-glow: rgba(180, 210, 60, 0.18);
 	--grid-line: rgba(24, 24, 21, 0.055);
@@ -98,7 +89,6 @@
 	--tag-bg: rgba(24, 24, 21, 0.045);
 	--hover-row: rgba(140, 180, 20, 0.1);
 
-	/* Feedback */
 	--glow-shadow: rgba(201, 242, 77, 0.9);
 	--glow-fade: rgba(201, 242, 77, 0);
 	--success-bg: rgba(140, 180, 20, 0.12);
@@ -109,11 +99,17 @@
 	--error-text: #a02828;
 	--danger: #c43434;
 
-	/* Elevation */
 	--shadow-card:
 		0 1px 2px rgba(24, 24, 21, 0.04), 0 8px 24px -16px rgba(24, 24, 21, 0.12);
 	--shadow-card-hover:
 		0 2px 4px rgba(24, 24, 21, 0.06), 0 20px 44px -22px rgba(24, 24, 21, 0.18);
+
+	scrollbar-color: var(--line) var(--bg);
+}
+
+:root[data-theme="light"],
+:root[data-theme="light"] body {
+	color-scheme: light only;
 }
 
 /* ============================================================
@@ -233,6 +229,37 @@ body::before {
 }
 
 /* ============================================================
+   NATIVE CONTROL OVERRIDES
+   ============================================================ */
+input,
+textarea,
+select,
+button {
+	color: var(--text);
+	caret-color: var(--text);
+	accent-color: var(--accent);
+	font-family: inherit;
+}
+:root[data-theme="light"] input,
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] select {
+	background-color: var(--surface);
+	color: var(--text);
+}
+
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus,
+.field input:-webkit-autofill:active,
+.field textarea:-webkit-autofill {
+	-webkit-text-fill-color: var(--text) !important;
+	-webkit-box-shadow: 0 0 0 1000px var(--surface) inset !important;
+	box-shadow: 0 0 0 1000px var(--surface) inset !important;
+	transition: background-color 5000s ease-in-out 0s;
+	caret-color: var(--text);
+}
+
+/* ============================================================
    SCROLL PROGRESS
    ============================================================ */
 .progress {
@@ -340,7 +367,6 @@ body::before {
 	background: var(--accent-tint);
 }
 
-/* Theme Toggle */
 .theme-toggle {
 	display: inline-flex;
 	align-items: center;
@@ -373,7 +399,6 @@ body::before {
 	height: 18px;
 }
 
-/* Mobile Menu Toggle */
 .menu-toggle {
 	display: none;
 	width: 40px;
@@ -397,7 +422,6 @@ body::before {
 	height: 20px;
 }
 
-/* Mobile Nav Drawer */
 .mobile-nav {
 	display: none;
 	position: fixed;
@@ -453,6 +477,10 @@ body::before {
 	border-radius: 999px;
 }
 
+:root[data-theme="light"] .mobile-nav {
+	background-color: rgba(250, 249, 244, 0.98);
+}
+
 @media (max-width: 768px) {
 	.nav-list {
 		display: none;
@@ -462,6 +490,15 @@ body::before {
 	}
 	.mobile-nav {
 		display: block;
+	}
+}
+
+@supports not (
+	(backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+	.site-header.is-scrolled,
+	.mobile-nav {
+		background-color: var(--bg);
 	}
 }
 
@@ -511,7 +548,6 @@ body::before {
 	filter: brightness(1.02);
 	transform: translateY(-2px);
 }
-
 .btn-ghost {
 	background-color: transparent;
 	border-color: var(--line);
@@ -709,7 +745,6 @@ body::before {
 	max-width: 38ch;
 	font-size: 0.875rem;
 }
-
 @media (max-width: 640px) {
 	.section-head {
 		flex-direction: column;
@@ -755,7 +790,6 @@ body::before {
 		transform: translateY(-4px);
 	}
 }
-
 .thumb {
 	position: relative;
 	aspect-ratio: 16/11;
@@ -859,7 +893,6 @@ body::before {
 	border: 1px solid var(--line-soft);
 	color: var(--muted);
 }
-
 .project-links {
 	display: flex;
 	flex-wrap: wrap;
@@ -976,7 +1009,6 @@ body::before {
 	color: var(--text);
 	font-weight: 500;
 }
-
 .education-list {
 	color: var(--muted);
 	font-size: 0.875rem;
@@ -986,7 +1018,6 @@ body::before {
 	color: var(--text);
 	font-weight: 500;
 }
-
 .stack {
 	padding: 1.5rem;
 	border: 1px solid var(--line-soft);
@@ -1133,7 +1164,7 @@ body::before {
 .field input,
 .field textarea {
 	width: 100%;
-	background: var(--surface);
+	background-color: var(--surface);
 	border: 1px solid var(--line);
 	border-radius: var(--radius-sm);
 	padding: 0.875rem 1rem;
@@ -1142,14 +1173,16 @@ body::before {
 	min-height: 48px;
 	transition:
 		border-color 0.2s var(--ease),
-		background 0.2s var(--ease);
+		background-color 0.2s var(--ease);
 	-webkit-appearance: none;
+	appearance: none;
+	background-clip: padding-box;
 }
 .field input:focus,
 .field textarea:focus {
 	outline: none;
 	border-color: var(--accent);
-	background: var(--surface-2);
+	background-color: var(--surface-2);
 }
 .field input[aria-invalid="true"],
 .field textarea[aria-invalid="true"] {
@@ -1165,7 +1198,6 @@ body::before {
 	color: var(--error-text);
 	font-size: 0.8125rem;
 }
-
 .honeypot {
 	position: absolute;
 	left: -9999px;
@@ -1173,7 +1205,6 @@ body::before {
 	height: 1px;
 	overflow: hidden;
 }
-
 .form-actions {
 	display: flex;
 	flex-wrap: wrap;
@@ -1239,7 +1270,6 @@ body::before {
 .socials a:hover {
 	color: var(--accent-text);
 }
-
 @media (max-width: 640px) {
 	.footer-inner {
 		flex-direction: column;
@@ -1264,6 +1294,21 @@ body::before {
 [data-reveal].is-visible {
 	opacity: 1;
 	transform: none;
+}
+
+/* ============================================================
+   MOBILE — LIGHT THEME POLISH
+   ============================================================ */
+@media (max-width: 768px) {
+	:root[data-theme="light"] body::before {
+		opacity: 0; /* Grain reads as dirt on small cream screens */
+	}
+	:root[data-theme="light"] .hero::before {
+		opacity: 0.6;
+	}
+	:root[data-theme="light"] .thumb::after {
+		opacity: 0.35;
+	}
 }
 
 /* ============================================================
