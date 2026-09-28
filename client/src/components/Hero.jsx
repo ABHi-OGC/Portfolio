@@ -27,11 +27,31 @@ export default function Hero() {
 				</Reveal>
 
 				<Reveal className="hero-actions" delay={0.18}>
-					<a className="btn btn-primary" href="#work">
-						View my projects <span aria-hidden="true">→</span>
+					{/* PRIMARY ACTION: Resume with glow and icon */}
+					<a
+						className="btn btn-primary btn-glow"
+						href="/resume.pdf"
+						download="Abhishek_Resume.pdf"
+						style={{ padding: ".875rem 1.75rem" }}>
+						<svg
+							width="18"
+							height="18"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2.5"
+							strokeLinecap="round"
+							strokeLinejoin="round">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+							<polyline points="7 10 12 15 17 10" />
+							<line x1="12" y1="15" x2="12" y2="3" />
+						</svg>
+						Download Resume
 					</a>
-					<a className="btn btn-ghost" href="mailto:abhipy10@gmail.com">
-						abhipy10@gmail.com
+
+					{/* SECONDARY ACTION: Projects link */}
+					<a className="btn btn-ghost" href="#work">
+						View my projects <span aria-hidden="true">→</span>
 					</a>
 				</Reveal>
 
