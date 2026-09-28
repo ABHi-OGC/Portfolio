@@ -10,7 +10,7 @@ export const projects = [
 		tags: ["React.js", "JavaScript", "Axios", "TMDB API", "Vercel"],
 		liveUrl: "https://mmdb-11.vercel.app/",
 		githubUrl: "https://github.com/ABHi-OGC/MMDB",
-		thumbnail: "/thumb/movie-explorer.png",
+		thumbnail: "/thumb/MovieExplorer.png",
 	},
 	{
 		id: "2",
@@ -22,6 +22,6 @@ export const projects = [
 		tags: ["React", "Vite", "CSS"],
 		liveUrl: "#",
 		githubUrl: "#",
-		thumbnail: "/thumb/portfolio.png",
+		thumbnail: "/thumb/Portfolio.png",
 	},
 ];
