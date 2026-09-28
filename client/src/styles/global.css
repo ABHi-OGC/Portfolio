@@ -329,6 +329,7 @@ button {
 	font-weight: 700;
 	flex-shrink: 0;
 	-webkit-appearance: none;
+	appearance: none;
 	forced-color-adjust: none;
 	transition:
 		background-color 0.35s var(--ease),
@@ -383,6 +384,7 @@ button {
 		color 0.2s var(--ease),
 		transform 0.2s var(--ease);
 	-webkit-appearance: none;
+	appearance: none;
 	-webkit-tap-highlight-color: transparent;
 	forced-color-adjust: none;
 	flex-shrink: 0;
