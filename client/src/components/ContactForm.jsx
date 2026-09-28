@@ -1,11 +1,10 @@
+// client/src/components/ContactForm.jsx
 import { useState } from "react";
-import { api } from "../api/client";
 
-const EMPTY = { name: "", email: "", subject: "", body: "", company: "" };
+const EMPTY = { name: "", email: "", subject: "", body: "" };
 
 export default function ContactForm() {
 	const [values, setValues] = useState(EMPTY);
-	const [issues, setIssues] = useState({});
 	const [status, setStatus] = useState("idle"); // idle | sending | success | error
 	const [feedback, setFeedback] = useState("");
 
@@ -15,25 +14,28 @@ export default function ContactForm() {
 	async function onSubmit(e) {
 		e.preventDefault();
 		setStatus("sending");
-		setIssues({});
 		setFeedback("");
 
 		try {
-			const res = await api.sendMessage(values);
+			// Replace 'xyzabc' with your actual Formspree ID
+			const response = await fetch("https://formspree.io/f/mwlpwjde", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(values),
+			});
+
+			if (!response.ok) throw new Error("Failed to send message");
+
 			setStatus("success");
-			setFeedback(res.message || "Message sent.");
+			setFeedback("Thanks — your message is in the queue.");
 			setValues(EMPTY);
 		} catch (err) {
 			setStatus("error");
-			setFeedback(err.message);
-			if (err.issues) setIssues(err.issues);
+			setFeedback(
+				"Something went wrong. Please try again or email me directly.",
+			);
 		}
 	}
-
-	const fieldError = (name) =>
-		issues[name]?.[0] ? (
-			<span className="field-error">{issues[name][0]}</span>
-		) : null;
 
 	return (
 		<form className="form-grid" onSubmit={onSubmit} noValidate>
@@ -44,11 +46,8 @@ export default function ContactForm() {
 					name="name"
 					value={values.name}
 					onChange={update("name")}
-					autoComplete="name"
 					required
-					aria-invalid={!!issues.name}
 				/>
-				{fieldError("name")}
 			</div>
 
 			<div className="field">
@@ -59,11 +58,8 @@ export default function ContactForm() {
 					type="email"
 					value={values.email}
 					onChange={update("email")}
-					autoComplete="email"
 					required
-					aria-invalid={!!issues.email}
 				/>
-				{fieldError("email")}
 			</div>
 
 			<div className="field span-2">
@@ -86,22 +82,7 @@ export default function ContactForm() {
 					value={values.body}
 					onChange={update("body")}
 					required
-					aria-invalid={!!issues.body}
 					rows={6}
-				/>
-				{fieldError("body")}
-			</div>
-
-			{/* honeypot — hidden from humans, irresistible to bots */}
-			<div className="honeypot" aria-hidden="true">
-				<label htmlFor="cf-company">Company</label>
-				<input
-					id="cf-company"
-					name="company"
-					tabIndex={-1}
-					autoComplete="off"
-					value={values.company}
-					onChange={update("company")}
 				/>
 			</div>
 

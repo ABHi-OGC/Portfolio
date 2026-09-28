@@ -1,23 +1,9 @@
-import { useProjects } from "../hooks/useProjects.js";
+// client/src/components/Work.jsx
+import { projects } from "../data/projects.js";
 import ProjectCard from "./ProjectCard.jsx";
 import Reveal from "./Reveal.jsx";
 
-function SkeletonCard() {
-	return (
-		<div className="card card-skeleton" aria-hidden="true">
-			<div className="thumb skeleton-block" />
-			<div className="card-body">
-				<div className="skeleton-line skeleton-line-lg" />
-				<div className="skeleton-line" />
-				<div className="skeleton-line skeleton-line-sm" />
-			</div>
-		</div>
-	);
-}
-
 export default function Work() {
-	const { projects, status, error } = useProjects({ featured: "true" });
-
 	return (
 		<section className="section" id="work">
 			<div className="container">
@@ -35,27 +21,11 @@ export default function Work() {
 					</Reveal>
 				</div>
 
-				{status === "loading" && (
-					<div className="work-grid">
-						{Array.from({ length: 2 }).map((_, i) => (
-							<SkeletonCard key={i} />
-						))}
-					</div>
-				)}
-
-				{status === "error" && (
-					<div className="form-status error" role="alert">
-						Couldn't load projects — {error.message}. Is the API running?
-					</div>
-				)}
-
-				{status === "success" && (
-					<div className="work-grid">
-						{projects.map((p, i) => (
-							<ProjectCard key={p._id} project={p} delay={i * 0.08} />
-						))}
-					</div>
-				)}
+				<div className="work-grid">
+					{projects.map((project, i) => (
+						<ProjectCard key={project.id} project={project} delay={i * 0.08} />
+					))}
+				</div>
 			</div>
 		</section>
 	);

@@ -1,5 +1,0 @@
-{
-	"name": "portfolio-api",
-	"type": "nodejs20",
-	"command": "node src/index.js"
-}

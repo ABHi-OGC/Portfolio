@@ -1,7 +1,4 @@
-// client/src/api/client.js
-const BASE =
-	import.meta.env.VITE_API_URL ||
-	"https://portfolio-api-xxxx.development.catalystserverless.com/api";
+const BASE = import.meta.env.VITE_API_URL || "/api";
 
 async function request(path, options = {}) {
 	const res = await fetch(`${BASE}${path}`, {
