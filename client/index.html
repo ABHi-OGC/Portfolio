@@ -2,12 +2,38 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<meta name="theme-color" content="#0a0a0b" />
-		<title>ABHISHEK - Web Developer</title>
+		<meta name="color-scheme" content="dark light" />
+		<title>Abhishek — MERN Developer</title>
 		<meta
 			name="description"
-			content="Web Developer building fast, accessible, maintainable interfaces." />
+			content="Product engineer building fast, accessible, maintainable interfaces." />
+		<script>
+			// Anti-flash: set theme before React mounts
+			(function () {
+				try {
+					var stored = localStorage.getItem("theme");
+					var theme =
+						stored === "light" || stored === "dark"
+							? stored
+							: window.matchMedia("(prefers-color-scheme: light)").matches
+								? "light"
+								: "dark";
+					document.documentElement.setAttribute("data-theme", theme);
+					var meta = document.querySelector('meta[name="theme-color"]');
+					if (meta)
+						meta.setAttribute(
+							"content",
+							theme === "light" ? "#fafaf7" : "#0a0a0b",
+						);
+				} catch (e) {
+					document.documentElement.setAttribute("data-theme", "dark");
+				}
+			})();
+		</script>
 	</head>
 	<body>
 		<div id="root"></div>
