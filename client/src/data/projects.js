@@ -21,7 +21,7 @@ export const projects = [
 		category: "Web Application",
 		tags: ["React", "Vite", "CSS"],
 		liveUrl: "#",
-		githubUrl: "#",
+		githubUrl: "https://github.com/ABHi-OGC/Portfolio",
 		thumbnail: "/thumb/Portfolio.png",
 	},
 ];
